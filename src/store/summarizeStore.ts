@@ -7,6 +7,7 @@ interface SummarizeStore {
   setText: (text: string) => void
   setSummary: (summary: string) => void
   setIsLoading: (isLoading: boolean) => void
+  reset: () => void
 }
 
 export const useSummarizeStore = create<SummarizeStore>((set) => ({
@@ -16,4 +17,5 @@ export const useSummarizeStore = create<SummarizeStore>((set) => ({
   setText: (text) => set({ text }),
   setSummary: (summary) => set({ summary }),
   setIsLoading: (isLoading) => set({ isLoading }),
+  reset: () => set({ text: '', summary: null, isLoading: false })
 }))

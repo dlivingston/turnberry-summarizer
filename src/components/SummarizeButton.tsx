@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 interface SummarizeButtonProps {
   onClick: () => void
   isLoading: boolean
+  className?: string
 }
 
 export default function SummarizeButton({ onClick, isLoading }: SummarizeButtonProps) {
@@ -10,7 +11,6 @@ export default function SummarizeButton({ onClick, isLoading }: SummarizeButtonP
     <Button 
       onClick={onClick} 
       disabled={isLoading}
-      className="w-full sm:w-auto"
     >
       {isLoading ? (
         <span className="inline-flex items-center">

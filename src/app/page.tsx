@@ -1,9 +1,13 @@
 "use client";
 
+import { ArrowPathIcon } from "@heroicons/react/24/outline"
+import { ThemeToggle } from "@/components/ThemeToggle"
 import TextInput from "@/components/TextInput"
 import SummarizeButton from "@/components/SummarizeButton"
 import ResultsPanel from "@/components/ResultsPanel"
 import { useSummarizeStore } from "@/store/summarizeStore"
+import { Button } from "@/components/ui/button"
+
 
 export default function Home() {
   const { 
@@ -12,7 +16,8 @@ export default function Home() {
     isLoading, 
     setText, 
     setSummary, 
-    setIsLoading 
+    setIsLoading,
+    reset
   } = useSummarizeStore()
 
     const handleSummarize = async () => {
@@ -32,17 +37,31 @@ export default function Home() {
 
   return (
     <div className="max-w-4xl mx-auto min-h-screen p-8">
-      <main className="flex flex-col gap-6">
+      <header className="flex justify-between items-center mb-8">
         <h1 className="text-2xl font-bold">AI Meeting Notes Summarizer</h1>
-        
+        <ThemeToggle />
+      </header>
+
+      <main className="flex flex-col gap-6">
         <div className="space-y-4">
           <TextInput onTextChange={setText} isLoading={isLoading} />
           
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 w-full sm:w-auto">
             <SummarizeButton 
               onClick={handleSummarize} 
               isLoading={isLoading} 
+              className="flex-1 sm:flex-initial"
             />
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={reset}
+              disabled={isLoading || (!text && !summary)}
+              aria-label="Reset form"
+              className="w-10 h-10"
+            >
+              <ArrowPathIcon className="h-5 w-5" />
+            </Button>
           </div>
 
           <ResultsPanel summary={summary} />
