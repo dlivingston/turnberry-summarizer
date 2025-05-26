@@ -1,17 +1,24 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { useState } from 'react'
 import { Textarea } from '@/components/ui/textarea'
 
 interface TextInputProps {
   onTextChange: (text: string) => void
+  isLoading?: boolean
 }
 
-export default function TextInput({ onTextChange }: TextInputProps) {
+export default function TextInput({ onTextChange, isLoading }: TextInputProps) {
   return (
-    <Textarea
-      className="min-h-[200px] w-full"
-      placeholder="Paste your meeting notes here..."
-      onChange={(e) => onTextChange(e.target.value)}
-    />
+    <div className="relative">
+      <Textarea
+        className="min-h-[200px] w-full"
+        placeholder="Paste your meeting notes here..."
+        onChange={(e) => onTextChange(e.target.value)}
+        disabled={isLoading}
+      />
+      {isLoading && (
+        <div className="absolute inset-0 bg-white/50 dark:bg-gray-900/50 flex items-center justify-center">
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-300 border-t-blue-600" />
+        </div>
+      )}
+    </div>
   )
 }

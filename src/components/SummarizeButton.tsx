@@ -12,7 +12,14 @@ export default function SummarizeButton({ onClick, isLoading }: SummarizeButtonP
       disabled={isLoading}
       className="w-full sm:w-auto"
     >
-      {isLoading ? 'Summarizing...' : 'Summarize'}
+      {isLoading ? (
+        <span className="inline-flex items-center">
+          Summarizing
+          <span className="ml-1 animate-[ellipsis_1.5s_steps(4,end)_infinite]">...</span>
+        </span>
+      ) : (
+        'Summarize'
+      )}
     </Button>
   )
 }
