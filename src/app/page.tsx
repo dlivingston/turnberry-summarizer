@@ -44,7 +44,11 @@ export default function Home() {
 
       <main className="flex flex-col gap-6">
         <div className="space-y-4">
-          <TextInput onTextChange={setText} isLoading={isLoading} />
+          <TextInput 
+            onTextChange={setText} 
+            isLoading={isLoading}
+            value={text}
+          />
           
           <div className="flex items-center gap-4 w-full sm:w-auto">
             <SummarizeButton 
